@@ -8,10 +8,12 @@
     top: 0;
     width: 100%;
     padding: 0 2rem;
-    background-color: var(--surface-card);
+    background-color: var(--primary-color);
     transition: left var(--layout-section-transition-duration);
     display: flex;
     align-items: center;
+    border-bottom: 1px solid #e7e7e7;
+    
 
     .layout-topbar-logo-container {
         width: 20rem;
@@ -28,8 +30,12 @@
         font-weight: 500;
         gap: 0.5rem;
 
-        svg {
-            width: 3rem;
+        svg,img {
+            width: 10rem;
+            height: 3rem;
+            object-fit: contain;
+            padding: 0.3rem 0;
+            object-position: left;
         }
 
         &:focus-visible {
@@ -42,11 +48,13 @@
         justify-content: center;
         align-items: center;
         color: var(--text-color-secondary);
-        border-radius: 50%;
+        border-radius: 8px;
         width: 2.5rem;
         height: 2.5rem;
         color: var(--text-color);
+        background-color: var(--primary-color);
         transition: background-color var(--element-transition-duration);
+        background-color: var(--surface-card);
         cursor: pointer;
 
         &:hover {
@@ -64,11 +72,6 @@
         span {
             font-size: 1rem;
             display: none;
-        }
-
-        &.layout-topbar-action-highlight {
-            background-color: var(--primary-color);
-            color: var(--primary-contrast-color);
         }
     }
 

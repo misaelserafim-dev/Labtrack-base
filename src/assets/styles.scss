@@ -3,3 +3,52 @@
 @use 'primeicons/primeicons.css';
 @use '@/assets/demo/demo.scss';
 
+::-webkit-scrollbar {
+    width: 5px;
+    background: #e7e7e7;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+}
+.p-button:hover {
+    border: none !important;
+}
+.p-button {
+    border: none !important;
+    box-shadow: none !important;
+}
+.text-xl {
+    font-size: 1rem;
+    line-height: 1.25rem;
+}
+.p-datatable-tbody > tr > td,.p-datatable-header-cell {
+    padding: 8px !important;
+}
+.p-breadcrumb {
+    background: transparent !important;
+    padding: 0.5rem !important;
+}
+input {
+    box-shadow: none !important;
+}
+.autenticaion-sidebar-item-menu {
+    max-width: 15rem;
+}
+.layout-sidebar .layout-menu-profile button {
+    text-align: left;
+    background-color: transparent;
+    margin: 0;
+    border: 0;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: .5rem 1.5rem;
+    transition: 0.3s;
+}
+ul.absolute.autenticaion-sidebar-item-menu {
+    border-top: 1px solid #e7e7e7;
+}

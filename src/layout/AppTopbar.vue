@@ -1,18 +1,45 @@
 <script setup>
 import { useLayout } from '@/layout/composables/layout';
+import { ref } from 'vue';
 import AppConfigurator from './AppConfigurator.vue';
 
 const { toggleMenu, toggleDarkMode, isDarkTheme } = useLayout();
+const model = ref([
+    {
+        items: [
+            {
+                label: 'Auth',
+                icon: 'pi pi-fw pi-user',
+                items: [
+                    {
+                        label: 'Login',
+                        icon: 'pi pi-user pi-sign-in',
+                        to: '/auth/login'
+                    },
+                    {
+                        label: 'Logout',
+                        icon: 'pi pi-power-off pi-sign-in',
+                        to: '/auth/logout'
+                    },
+                    {
+                        label: 'Configuração',
+                        icon: 'pi pi-cog pi-sign-in',
+                        to: '/pages/configuracao'
+                    },
+                ]
+            },
+        ]
+    }
+]);
+
 </script>
 
 <template>
     <div class="layout-topbar">
         <div class="layout-topbar-logo-container">
-            <button class="layout-menu-button layout-topbar-action" @click="toggleMenu">
-                <i class="pi pi-bars"></i>
-            </button>
+            
             <router-link to="/" class="layout-topbar-logo">
-                <svg viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- <svg viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         fill-rule="evenodd"
                         clip-rule="evenodd"
@@ -28,9 +55,11 @@ const { toggleMenu, toggleDarkMode, isDarkTheme } = useLayout();
                             fill="var(--primary-color)"
                         />
                     </g>
-                </svg>
-
-                <span>SAKAI</span>
+                </svg> -->
+                <img src="../assets/images/logo-teste.png" alt="imagem logo teste">
+                <button class="layout-menu-button layout-topbar-action" @click="toggleMenu">
+                    <i class="pi pi-angle-left"></i>
+                </button>
             </router-link>
         </div>
 
@@ -51,29 +80,76 @@ const { toggleMenu, toggleDarkMode, isDarkTheme } = useLayout();
                 </div>
             </div>
 
-            <button
-                class="layout-topbar-menu-button layout-topbar-action"
-                v-styleclass="{ selector: '@next', enterFromClass: 'hidden', enterActiveClass: 'animate-scalein', leaveToClass: 'hidden', leaveActiveClass: 'animate-fadeout', hideOnOutsideClick: true }"
-            >
-                <i class="pi pi-ellipsis-v"></i>
-            </button>
+            <div class="layout-config-menu">
+                <div class="relative">
+                    <button
+                        v-styleclass="{ selector: '@next', enterFromClass: 'hidden', enterActiveClass: 'animate-scalein', leaveToClass: 'hidden', leaveActiveClass: 'animate-fadeout', hideOnOutsideClick: true }"
+                        type="button"
+                        class="layout-topbar-action layout-topbar-action-highlight"
+                    >
+                        <i class="pi pi-user"></i>
+                    </button>
+                    <div class="absolute config-panel hidden top-[3.25rem] right-0 w-64 p-4 bg-surface-0 dark:bg-surface-900 border border-surface rounded-border origin-top shadow-[0px_3px_5px_rgba(0,0,0,0.02),0px_0px_2px_rgba(0,0,0,0.05),0px_1px_4px_rgba(0,0,0,0.08)]">
+                        <ul class="layout-menu layout-submenu">
+                            <li class="active-menuitem">
+                                <Transition 
+                                    v-if="model[0].items[0].items && model[0].items[0].visible !== false" 
+                                    name="layout-submenu"
+                                >
+                                    <ul v-show="true" class="layout-submenu">
+                                        <li 
+                                            v-for="(child, i) in model[0].items[0].items" 
+                                            :key="i" 
+                                            class=""
+                                        >
+                                            <a :href="child.to" class="" :index="i">
+                                                <i :class="child.icon + ' layout-menuitem-icon'"></i>
+                                                <span class="layout-menuitem-text">{{ child.label }}</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </Transition>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-            <div class="layout-topbar-menu hidden lg:block">
+
+            <!-- <div class="layout-topbar-menu lg:block">
                 <div class="layout-topbar-menu-content">
-                    <button type="button" class="layout-topbar-action">
-                        <i class="pi pi-calendar"></i>
-                        <span>Calendar</span>
-                    </button>
-                    <button type="button" class="layout-topbar-action">
-                        <i class="pi pi-inbox"></i>
-                        <span>Messages</span>
-                    </button>
+                 
                     <button type="button" class="layout-topbar-action">
                         <i class="pi pi-user"></i>
                         <span>Profile</span>
                     </button>
+
+                    <div class="submenu absolute">
+                        <ul class="layout-menu layout-submenu">
+                            <li class="active-menuitem">
+                                <h3 class="text-surface-900 dark:text-surface-0 font-medium text-xl mb-2">Minha conta</h3>
+                                <Transition 
+                                    v-if="model[0].items[0].items && model[0].items[0].visible !== false" 
+                                    name="layout-submenu"
+                                >
+                                    <ul v-show="true" class="layout-submenu">
+                                        <li 
+                                            v-for="(child, i) in model[0].items[0].items" 
+                                            :key="i" 
+                                            class=""
+                                        >
+                                            <a :href="child.to" class="" :index="i">
+                                                <i :class="child.icon + ' layout-menuitem-icon'"></i>
+                                                <span class="layout-menuitem-text">{{ child.label }}</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </Transition>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>

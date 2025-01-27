@@ -7,9 +7,10 @@
 
 .card {
     background: var(--surface-card);
-    padding: 2rem;
-    margin-bottom: 2rem;
+    padding: 1.1rem;
+    margin-bottom: 1.1rem;
     border-radius: var(--content-border-radius);
+    border: 1px solid #e7e7e7;
 
     &:last-child {
         margin-bottom: 0;

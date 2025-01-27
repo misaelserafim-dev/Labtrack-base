@@ -1,8 +1,12 @@
 <script setup>
 import { ProductService } from '@/service/ProductService';
 import { FilterMatchMode } from '@primevue/core/api';
+import Breadcrumb from 'primevue/breadcrumb';
 import { useToast } from 'primevue/usetoast';
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue'; // Adicionado computed
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 onMounted(() => {
     ProductService.getProducts().then((data) => (products.value = data));
@@ -132,10 +136,25 @@ function getStatusLabel(status) {
             return null;
     }
 }
+
+const breadcrumbItems = computed(() => {
+    const segments = route.path.split('/').filter(Boolean);
+    return segments.map((segment, index) => {
+        const path = '/' + segments.slice(0, index + 1).join('/');
+        const label = segment.charAt(0).toUpperCase() + segment.slice(1); 
+        return { label, to: path };
+    });
+});
+
+const item = { label: "Crud", icon: 'pi pi-pen', to: '/' };
 </script>
+
 
 <template>
     <div>
+        <div class="col-span-12">
+            <Breadcrumb :model="breadcrumbItems" :home="item" />
+        </div>
         <div class="card">
             <Toolbar class="mb-6">
                 <template #start>
