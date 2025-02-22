@@ -35,6 +35,18 @@ const router = createRouter({
             ],
         },
         {
+            path: '/kanban',
+            component: AppLayout,
+            children: [
+                {
+                    path: '',
+                    name: 'kanban',
+                    component: () => import('@/views/pages/Kanban.vue'),
+                    meta: { label: 'kanban' },
+                },
+            ],
+        },
+        {
             path: '/auth/login',
             name: 'login',
             component: () => import('@/views/pages/auth/Login.vue'),

@@ -8,7 +8,8 @@ const model = ref([
         label: 'Home',
         items: [
             { label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' },
-            { label: 'Crud', icon: 'pi pi-pencil', to: '/pages' }
+            { label: 'Crud', icon: 'pi pi-pencil', to: '/pages' },
+            { label: 'kanban', icon: 'pi pi-th-large', to: '/kanban' }
         ]
     },
 ]);

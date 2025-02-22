@@ -10,6 +10,9 @@
 ::-webkit-scrollbar-thumb {
     background: var(--primary-color);
 }
+.layout-main.overflow-x-auto::-webkit-scrollbar {
+    height: 7px;
+}
 .p-button:hover {
     border: none !important;
 }
@@ -20,6 +23,10 @@
 .text-xl {
     font-size: 1rem;
     line-height: 1.25rem;
+}
+.text-xxl {
+    font-size: 1.5rem;
+    line-height: 2rem;
 }
 .p-datatable-tbody > tr > td,.p-datatable-header-cell {
     padding: 8px !important;
