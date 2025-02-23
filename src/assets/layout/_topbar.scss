@@ -47,19 +47,10 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        color: var(--text-color-secondary);
         border-radius: 8px;
         width: 2.5rem;
         height: 2.5rem;
-        color: var(--text-color);
-        background-color: var(--primary-color);
-        transition: background-color var(--element-transition-duration);
-        background-color: var(--surface-card);
         cursor: pointer;
-
-        &:hover {
-            background-color: var(--surface-hover);
-        }
 
         &:focus-visible {
             @include focused();

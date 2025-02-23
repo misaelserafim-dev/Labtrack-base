@@ -25,19 +25,17 @@ const model = ref([
                         label: 'Configuração',
                         icon: 'pi pi-cog pi-sign-in',
                         to: '/pages/configuracao'
-                    },
+                    }
                 ]
-            },
+            }
         ]
     }
 ]);
-
 </script>
 
 <template>
     <div class="layout-topbar">
         <div class="layout-topbar-logo-container">
-            
             <router-link to="/" class="layout-topbar-logo">
                 <!-- <svg viewBox="0 0 54 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -56,52 +54,51 @@ const model = ref([
                         />
                     </g>
                 </svg> -->
-                <img src="../assets/images/logo-teste.png" alt="imagem logo teste">
-                <button class="layout-menu-button layout-topbar-action" @click="toggleMenu">
+                <img src="../assets/images/logo-teste.png" alt="imagem logo teste" />
+                <Button variant="text" severity="contrast" class="layout-menu-button layout-topbar-action" @click="toggleMenu">
                     <i class="pi pi-angle-left"></i>
-                </button>
+                </Button>
             </router-link>
         </div>
 
         <div class="layout-topbar-actions">
             <div class="layout-config-menu">
-                <button type="button" class="layout-topbar-action" @click="toggleDarkMode">
+                <Button variant="text" severity="contrast" type="button" class="layout-topbar-action" @click="toggleDarkMode">
                     <i :class="['pi', { 'pi-moon': isDarkTheme, 'pi-sun': !isDarkTheme }]"></i>
-                </button>
+                </Button>
                 <div class="relative">
-                    <button
+                    <Button
+                        variant="text"
+                        severity="contrast"
                         v-styleclass="{ selector: '@next', enterFromClass: 'hidden', enterActiveClass: 'animate-scalein', leaveToClass: 'hidden', leaveActiveClass: 'animate-fadeout', hideOnOutsideClick: true }"
                         type="button"
                         class="layout-topbar-action layout-topbar-action-highlight"
                     >
                         <i class="pi pi-palette"></i>
-                    </button>
+                    </Button>
                     <AppConfigurator />
                 </div>
             </div>
 
             <div class="layout-config-menu">
                 <div class="relative">
-                    <button
+                    <Button
+                        variant="text"
+                        severity="contrast"
                         v-styleclass="{ selector: '@next', enterFromClass: 'hidden', enterActiveClass: 'animate-scalein', leaveToClass: 'hidden', leaveActiveClass: 'animate-fadeout', hideOnOutsideClick: true }"
                         type="button"
                         class="layout-topbar-action layout-topbar-action-highlight"
                     >
                         <i class="pi pi-user"></i>
-                    </button>
-                    <div class="absolute config-panel hidden top-[3.25rem] right-0 w-64 p-4 bg-surface-0 dark:bg-surface-900 border border-surface rounded-border origin-top shadow-[0px_3px_5px_rgba(0,0,0,0.02),0px_0px_2px_rgba(0,0,0,0.05),0px_1px_4px_rgba(0,0,0,0.08)]">
+                    </Button>
+                    <div
+                        class="absolute config-panel hidden top-[3.25rem] right-0 w-64 p-4 bg-surface-0 dark:bg-surface-900 border border-surface rounded-border origin-top shadow-[0px_3px_5px_rgba(0,0,0,0.02),0px_0px_2px_rgba(0,0,0,0.05),0px_1px_4px_rgba(0,0,0,0.08)]"
+                    >
                         <ul class="layout-menu layout-submenu">
                             <li class="active-menuitem">
-                                <Transition 
-                                    v-if="model[0].items[0].items && model[0].items[0].visible !== false" 
-                                    name="layout-submenu"
-                                >
+                                <Transition v-if="model[0].items[0].items && model[0].items[0].visible !== false" name="layout-submenu">
                                     <ul v-show="true" class="layout-submenu">
-                                        <li 
-                                            v-for="(child, i) in model[0].items[0].items" 
-                                            :key="i" 
-                                            class=""
-                                        >
+                                        <li v-for="(child, i) in model[0].items[0].items" :key="i" class="">
                                             <a :href="child.to" class="" :index="i">
                                                 <i :class="child.icon + ' layout-menuitem-icon'"></i>
                                                 <span class="layout-menuitem-text">{{ child.label }}</span>
@@ -114,7 +111,6 @@ const model = ref([
                     </div>
                 </div>
             </div>
-
 
             <!-- <div class="layout-topbar-menu lg:block">
                 <div class="layout-topbar-menu-content">
