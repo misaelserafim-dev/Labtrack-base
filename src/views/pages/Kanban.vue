@@ -105,54 +105,8 @@
           <!-- box Comentários -->
           <div class="card-right w-full md:w-1/2 p-6 border-l mt-4 md:mt-0">
             <div class="scroll-modal-item">
-              <h3 class="font-bold mb-2">Comentários</h3>
-              <div class="comments-section">
-                <ul>  
-                  <li v-for="(comment, index) in selectedTask.comments" :key="index" class="comment flex items-start gap-2 p-2">
-                    <img :src="comment.avatar" class="w-8 h-8 rounded-full">
-                    <div class="frame-comment flex items-start gap-2">
-
-                        <div class="hover-comments">
-                          <i class="pi pi-ellipsis-v cursor-pointer text-xl" @click="toggleMenuComments(index)"></i>
-                          <div v-if="menuOpenComments === index" class="menu-item-comments absolute right-4 top-2 bg-white shadow-md rounded-md w-40 z-50">
-                            <i class="pi pi-trash cursor-pointer text-red-500" @click="selectedTask.comments.splice(index, 1)"></i>
-                            <i class="pi pi-pencil cursor-pointer text-blue-500" @click="editComment(index)"></i>
-                          </div>
-                        </div>
-                        
-                        <div>
-                          <div class="flex justify-between w-full pb-2">
-                            <p class="font-bold mr-4">{{ comment.user }}</p>
-                            <span class="text-gray-500 text-sm">{{ comment.timestamp }}</span>
-                          </div>
-
-                          <div v-if="comment.fileUrl">
-                            <div v-if="comment.fileUrl.includes('image')" class="img-comments-item">
-                              <img :src="comment.fileUrl" class="rounded-md cursor-pointer transition-transform" @click="expandedImage = comment.fileUrl">
-                            </div>
-                            <div v-else>
-                              <a :href="comment.fileUrl" target="_blank" class="text-blue-500">Abrir Arquivo</a>
-                            </div>
-                          </div>
-                          <p v-else>{{ comment.text }}</p>
-                        </div>
-                       
-                    </div>
-                  </li>
-                </ul>
-              </div>
+              <Commentario :comments="selectedTask.comments" />
             </div>
-
-            <!-- adicionar comentários -->
-            <div class="edit-comments mt-4 flex gap-2">
-              <label for="upload_files_comments">
-                  <i class="pi pi-upload mr-2"></i>
-                  <input id="upload_files_comments" type="file" accept="image/*" class="mt-2" @change="AddFileUploadComment">
-                </label>
-              <textarea v-model="newComment" placeholder="Adicione um comentário..." class="comment-box flex-1 p-2 border rounded-md"></textarea>
-              <button @click="addComment" class="comment-submit bg-blue-500 text-white px-4 py-2 rounded-md">Enviar</button>
-            </div>
-
           </div>
         </div>
       </div>
@@ -173,6 +127,7 @@
 
 
 <script>
+
 export default {
   data() {
     return {
@@ -364,20 +319,6 @@ export default {
       else {
         const formatDate = `${day.toString().padStart(2, '0')}/${(month + 1).toString().padStart(2, '0')}/${year}`;
         return `Em ${formatDate} às ${hours}:${minutes}`;
-      }
-    },
-
-    addComment() 
-    {
-      if (this.newComment.trim() !== "") 
-      {
-        this.selectedTask.comments.push({
-          user: "Misael Serafim",
-          avatar: 'https://ui-avatars.com/api/?name=Mi',
-          text: this.newComment,
-          timestamp: this.getFormatDate(),
-        });
-        this.newComment = "";
       }
     },
 
